@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a938694d8ec749469d3e4c79e4eb0f27" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_roles" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_userDetails" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_users" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___role___787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___user___778AC167" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residentBalance" Width="1.5" PointX="7.625" PointY="1.125" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residentCollection" Width="1.5" PointX="7.625" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residents" Width="1.5" PointX="5.375" PointY="1.625" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__236943A5" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__18EBB532" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

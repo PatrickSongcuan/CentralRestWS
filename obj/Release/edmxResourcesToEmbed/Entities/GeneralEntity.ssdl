@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A4338C_centralwsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_VCMS_residentBalance">
+    <Key>
+      <PropertyRef Name="balance_id" />
+    </Key>
+    <Property Name="balance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resident_id" Type="int" Nullable="false" />
+    <Property Name="balance_amount" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="last_payment_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_residentCollection">
+    <Key>
+      <PropertyRef Name="collection_id" />
+    </Key>
+    <Property Name="collection_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resident_id" Type="int" Nullable="false" />
+    <Property Name="payment_amount" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="date_of_payment" Type="datetime" Nullable="false" />
+    <Property Name="payment_month" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_residents">
+    <Key>
+      <PropertyRef Name="resident_id" />
+    </Key>
+    <Property Name="resident_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="middle_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="contact_number" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="email_address" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="total_monthly_collection" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="start_of_collection" Type="datetime" Nullable="false" />
+    <Property Name="date_created" Type="datetime" Nullable="false" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="date_modified" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+    <Property Name="is_active" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_roles">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_userDetails">
+    <Key>
+      <PropertyRef Name="user_detail_id" />
+    </Key>
+    <Property Name="user_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="role_id" Type="int" />
+    <Property Name="email_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="contact_number" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="dateModified" Type="datetime" />
+    <Property Name="modifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="is_active" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tbl_VCMS___resid__18EBB532">
+    <End Role="tbl_VCMS_residents" Type="Self.tbl_VCMS_residents" Multiplicity="1" />
+    <End Role="tbl_VCMS_residentCollection" Type="Self.tbl_VCMS_residentCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_residents">
+        <PropertyRef Name="resident_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_residentCollection">
+        <PropertyRef Name="resident_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___resid__236943A5">
+    <End Role="tbl_VCMS_residents" Type="Self.tbl_VCMS_residents" Multiplicity="1" />
+    <End Role="tbl_VCMS_residentBalance" Type="Self.tbl_VCMS_residentBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_residents">
+        <PropertyRef Name="resident_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_residentBalance">
+        <PropertyRef Name="resident_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___role___787EE5A0">
+    <End Role="tbl_VCMS_roles" Type="Self.tbl_VCMS_roles" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___user___778AC167">
+    <End Role="tbl_VCMS_users" Type="Self.tbl_VCMS_users" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="prc_VCMS_check_resident" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="first_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="email_address" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_check_username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_create_resident" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="first_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="middle_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="email_address" Type="nvarchar" Mode="In" />
+    <Parameter Name="contact_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="total_monthly_collection" Type="nvarchar" Mode="In" />
+    <Parameter Name="start_of_collection" Type="datetime" Mode="In" />
+    <Parameter Name="has_payment" Type="int" Mode="In" />
+    <Parameter Name="user_id_creator" Type="int" Mode="In" />
+    <Parameter Name="payment_amount" Type="nvarchar" Mode="In" />
+    <Parameter Name="balance" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_all_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_all_users_search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="search_input" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_password_hash" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_roles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="prc_VCMS_get_user_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_user_by_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="status_flag" Type="int" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_user_roles_and_details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_register_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="first_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="role_id" Type="int" Mode="In" />
+    <Parameter Name="email_address" Type="nvarchar" Mode="In" />
+    <Parameter Name="contact_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="user_id_creator" Type="int" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_update_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="first_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="email_address" Type="nvarchar" Mode="In" />
+    <Parameter Name="contact_number" Type="nvarchar" Mode="In" />
+    <Parameter Name="user_id_creator" Type="int" Mode="In" />
+    <Parameter Name="is_active" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DB_A4338C_centralwsModelStoreContainer">
+    <EntitySet Name="tbl_VCMS_residentBalance" EntityType="Self.tbl_VCMS_residentBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_residentCollection" EntityType="Self.tbl_VCMS_residentCollection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_residents" EntityType="Self.tbl_VCMS_residents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_roles" EntityType="Self.tbl_VCMS_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_userDetails" EntityType="Self.tbl_VCMS_userDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_users" EntityType="Self.tbl_VCMS_users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_VCMS___resid__18EBB532" Association="Self.FK__tbl_VCMS___resid__18EBB532">
+      <End Role="tbl_VCMS_residents" EntitySet="tbl_VCMS_residents" />
+      <End Role="tbl_VCMS_residentCollection" EntitySet="tbl_VCMS_residentCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___resid__236943A5" Association="Self.FK__tbl_VCMS___resid__236943A5">
+      <End Role="tbl_VCMS_residents" EntitySet="tbl_VCMS_residents" />
+      <End Role="tbl_VCMS_residentBalance" EntitySet="tbl_VCMS_residentBalance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___role___787EE5A0" Association="Self.FK__tbl_VCMS___role___787EE5A0">
+      <End Role="tbl_VCMS_roles" EntitySet="tbl_VCMS_roles" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___user___778AC167" Association="Self.FK__tbl_VCMS___user___778AC167">
+      <End Role="tbl_VCMS_users" EntitySet="tbl_VCMS_users" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

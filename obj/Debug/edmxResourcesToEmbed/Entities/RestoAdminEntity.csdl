@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoAdmin" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tb_ra_roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleValue" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tb_ra_users" Relationship="Self.FK__tb_ra_use__roleI__51300E55" FromRole="tb_ra_roles" ToRole="tb_ra_users" />
+  </EntityType>
+  <EntityType Name="tb_ra_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="roleID" Type="Int32" />
+    <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="middleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tb_ra_roles" Relationship="Self.FK__tb_ra_use__roleI__51300E55" FromRole="tb_ra_users" ToRole="tb_ra_roles" />
+    <Property Name="createdBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__tb_ra_use__roleI__51300E55">
+    <End Role="tb_ra_roles" Type="Self.tb_ra_roles" Multiplicity="0..1" />
+    <End Role="tb_ra_users" Type="Self.tb_ra_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ra_roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_ra_users">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestoAdminEntity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_ra_roles" EntityType="Self.tb_ra_roles" />
+    <EntitySet Name="tb_ra_users" EntityType="Self.tb_ra_users" />
+    <AssociationSet Name="FK__tb_ra_use__roleI__51300E55" Association="Self.FK__tb_ra_use__roleI__51300E55">
+      <End Role="tb_ra_roles" EntitySet="tb_ra_roles" />
+      <End Role="tb_ra_users" EntitySet="tb_ra_users" />
+    </AssociationSet>
+    <FunctionImport Name="sp_ra_getRoles" ReturnType="Collection(RestoAdmin.sp_ra_getRoles_Result)" />
+    <FunctionImport Name="sp_ra_registerUser">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="roleId" Mode="In" Type="Int32" />
+      <Parameter Name="firstName" Mode="In" Type="String" />
+      <Parameter Name="middleName" Mode="In" Type="String" />
+      <Parameter Name="lastName" Mode="In" Type="String" />
+      <Parameter Name="createdBy" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_ra_getRoles_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="roleValue" Nullable="false" MaxLength="200" />
+  </ComplexType>
+</Schema>

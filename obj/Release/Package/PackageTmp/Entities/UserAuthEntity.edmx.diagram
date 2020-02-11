@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05dbbb08eef0417ea3788e060a8d5283" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_central_ws_ielts_user_details" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_central_ws_ielts_users" Width="1.5" PointX="1" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_centr__ielts__25869641" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_central_ws_presmat_buzzer" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_central_ws_presmat_v2_groups" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_central_ws_presmat_group_scores" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.Lookup" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.Lookuptimer" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.test" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.BuzzLookup" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_roles" Width="1.5" PointX="7.375" PointY="9.875" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_users" Width="1.5" PointX="7.375" PointY="4.625" />
+        <EntityTypeShape EntityType="DB_A4338C_centralwsModel.tbl_VCMS_userDetails" Width="1.5" PointX="9.625" PointY="4" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___role___787EE5A0" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___creat__7A672E12" />
+        <AssociationConnector Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___user___778AC167" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

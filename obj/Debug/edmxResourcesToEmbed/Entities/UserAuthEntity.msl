@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_A4338C_centralwsModelStoreContainer" CdmEntityContainer="CentralWsAuthEntity">
+    <EntitySetMapping Name="tbl_central_ws_ielts_user_details">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_central_ws_ielts_user_details">
+        <MappingFragment StoreEntitySet="tbl_central_ws_ielts_user_details">
+          <ScalarProperty Name="ielts_user_detail_id" ColumnName="ielts_user_detail_id" />
+          <ScalarProperty Name="ielts_user_id" ColumnName="ielts_user_id" />
+          <ScalarProperty Name="ielts_first_name" ColumnName="ielts_first_name" />
+          <ScalarProperty Name="ielts_middle_name" ColumnName="ielts_middle_name" />
+          <ScalarProperty Name="ielts_last_name" ColumnName="ielts_last_name" />
+          <ScalarProperty Name="ielts_email_address" ColumnName="ielts_email_address" />
+          <ScalarProperty Name="ielts_contact_number" ColumnName="ielts_contact_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_central_ws_ielts_users">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_central_ws_ielts_users">
+        <MappingFragment StoreEntitySet="tbl_central_ws_ielts_users">
+          <ScalarProperty Name="ielts_user_id" ColumnName="ielts_user_id" />
+          <ScalarProperty Name="ielts_username" ColumnName="ielts_username" />
+          <ScalarProperty Name="ielts_password" ColumnName="ielts_password" />
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ielts_insert_user" FunctionName="DB_A4338C_centralwsModel.Store.ielts_insert_user" />
+    <FunctionImportMapping FunctionImportName="ielts_insert_user_details" FunctionName="DB_A4338C_centralwsModel.Store.ielts_insert_user_details" />
+    <FunctionImportMapping FunctionImportName="ielts_get_all_users" FunctionName="DB_A4338C_centralwsModel.Store.ielts_get_all_users">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A4338C_centralwsModel.ielts_get_all_users_Result">
+          <ScalarProperty Name="ielts_user_id" ColumnName="ielts_user_id" />
+          <ScalarProperty Name="ielts_username" ColumnName="ielts_username" />
+          <ScalarProperty Name="ielts_password" ColumnName="ielts_password" />
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbl_central_ws_presmat_buzzer">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_central_ws_presmat_buzzer">
+        <MappingFragment StoreEntitySet="tbl_central_ws_presmat_buzzer">
+          <ScalarProperty Name="presmat_date_updated" ColumnName="presmat_date_updated" />
+          <ScalarProperty Name="presmat_is_buzzed" ColumnName="presmat_is_buzzed" />
+          <ScalarProperty Name="presmat_group_number" ColumnName="presmat_group_number" />
+          <ScalarProperty Name="presmat_buzz_id" ColumnName="presmat_buzz_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="presmat_get_buzzed_group" FunctionName="DB_A4338C_centralwsModel.Store.presmat_get_buzzed_group" />
+    <FunctionImportMapping FunctionImportName="presmat_new_round" FunctionName="DB_A4338C_centralwsModel.Store.presmat_new_round" />
+    <FunctionImportMapping FunctionImportName="presmat_buzz" FunctionName="DB_A4338C_centralwsModel.Store.presmat_buzz" />
+    <FunctionImportMapping FunctionImportName="presmat_v2_get_group_numbers" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_get_group_numbers" />
+    <FunctionImportMapping FunctionImportName="presmat_v2_register_group" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_register_group" />
+    <FunctionImportMapping FunctionImportName="presmat_v2_get_groups" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_get_groups">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A4338C_centralwsModel.presmat_v2_get_groups_Result">
+          <ScalarProperty Name="presmat_v2_group_id" ColumnName="presmat_v2_group_id" />
+          <ScalarProperty Name="presmat_v2_group_no" ColumnName="presmat_v2_group_no" />
+          <ScalarProperty Name="presmat_v2_group_name" ColumnName="presmat_v2_group_name" />
+          <ScalarProperty Name="presmat_is_buzzed" ColumnName="presmat_is_buzzed" />
+          <ScalarProperty Name="presmat_group_score" ColumnName="presmat_group_score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="presmat_v2_logout_delete_group" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_logout_delete_group" />
+    <EntitySetMapping Name="tbl_central_ws_presmat_v2_groups">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_central_ws_presmat_v2_groups">
+        <MappingFragment StoreEntitySet="tbl_central_ws_presmat_v2_groups">
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="presmat_v2_group_name" ColumnName="presmat_v2_group_name" />
+          <ScalarProperty Name="presmat_v2_group_no" ColumnName="presmat_v2_group_no" />
+          <ScalarProperty Name="presmat_v2_group_id" ColumnName="presmat_v2_group_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_central_ws_presmat_group_scores">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_central_ws_presmat_group_scores">
+        <MappingFragment StoreEntitySet="tbl_central_ws_presmat_group_scores">
+          <ScalarProperty Name="presmat_group_score" ColumnName="presmat_group_score" />
+          <ScalarProperty Name="presmat_group_number" ColumnName="presmat_group_number" />
+          <ScalarProperty Name="presmat_group_score_id" ColumnName="presmat_group_score_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lookups">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.Lookup">
+        <MappingFragment StoreEntitySet="Lookup">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="lookup_name" ColumnName="lookup_name" />
+          <ScalarProperty Name="lookup_id" ColumnName="lookup_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="presmat_v2_get_current_time" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_get_current_time" />
+    <FunctionImportMapping FunctionImportName="presmat_v2_insert_new_time" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_insert_new_time" />
+    <FunctionImportMapping FunctionImportName="presmat_v2_insert_time_to_lookup" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_insert_time_to_lookup" />
+    <EntitySetMapping Name="Lookuptimers">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.Lookuptimer">
+        <MappingFragment StoreEntitySet="Lookuptimer">
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="timer_id" ColumnName="timer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tests">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="test1" ColumnName="test" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="presmat_v2_getBuzzStartDate_EndDate" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_getBuzzStartDate_EndDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A4338C_centralwsModel.presmat_v2_getBuzzStartDate_EndDate_Result">
+          <ScalarProperty Name="buzzlookUp_startDate" ColumnName="buzzlookUp_startDate" />
+          <ScalarProperty Name="buzzlookUp_endDate" ColumnName="buzzlookUp_endDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="BuzzLookups">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.BuzzLookup">
+        <MappingFragment StoreEntitySet="BuzzLookup">
+          <ScalarProperty Name="buzzLookup_endDate" ColumnName="buzzLookup_endDate" />
+          <ScalarProperty Name="buzzLookup_startDate" ColumnName="buzzLookup_startDate" />
+          <ScalarProperty Name="buzzLookup_id" ColumnName="buzzLookup_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="presmat_v2_update_score" FunctionName="DB_A4338C_centralwsModel.Store.presmat_v2_update_score" />
+    <FunctionImportMapping FunctionImportName="button_toggle" FunctionName="DB_A4338C_centralwsModel.Store.button_toggle" />
+    <FunctionImportMapping FunctionImportName="check_button_enable" FunctionName="DB_A4338C_centralwsModel.Store.check_button_enable" />
+    <EntitySetMapping Name="tbl_VCMS_roles">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_VCMS_roles">
+        <MappingFragment StoreEntitySet="tbl_VCMS_roles">
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VCMS_users">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_VCMS_users">
+        <MappingFragment StoreEntitySet="tbl_VCMS_users">
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VCMS_userDetails">
+      <EntityTypeMapping TypeName="DB_A4338C_centralwsModel.tbl_VCMS_userDetails">
+        <MappingFragment StoreEntitySet="tbl_VCMS_userDetails">
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+          <ScalarProperty Name="email_address" ColumnName="email_address" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_detail_id" ColumnName="user_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="prc_VCMS_get_roles" FunctionName="DB_A4338C_centralwsModel.Store.prc_VCMS_get_roles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A4338C_centralwsModel.prc_VCMS_get_roles_Result">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

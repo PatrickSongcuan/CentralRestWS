@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_Resto_Entity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_resto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resto_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="enabled" Type="bit" Nullable="false" />
+    <Property Name="date_created" Type="datetime" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="date_modified" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_resto_categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desc" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="enabled" Type="bit" Nullable="false" />
+    <Property Name="date_created" Type="datetime" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="date_modified" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_resto_items">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resto_id" Type="int" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="item_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="item_description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="item_image" Type="varbinary(max)" />
+    <Property Name="enabled" Type="bit" Nullable="false" />
+    <Property Name="is_available" Type="bit" Nullable="false" />
+    <Property Name="is_new" Type="bit" Nullable="false" />
+    <Property Name="is_special" Type="bit" Nullable="false" />
+    <Property Name="date_created" Type="datetime" />
+    <Property Name="created_by" Type="int" Nullable="false" />
+    <Property Name="date_modified" Type="datetime" />
+    <Property Name="modified_by" Type="int" />
+  </EntityType>
+  <Association Name="FK__tb_resto___categ__40F9A68C">
+    <End Role="tb_resto_categories" Type="Self.tb_resto_categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tb_resto_items" Type="Self.tb_resto_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_resto_categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_resto_items">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tb_resto___resto__40058253">
+    <End Role="tb_resto" Type="Self.tb_resto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tb_resto_items" Type="Self.tb_resto_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_resto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_resto_items">
+        <PropertyRef Name="resto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_resto_get_specials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="resto_id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Db_Resto_EntityStoreContainer">
+    <EntitySet Name="tb_resto" EntityType="Self.tb_resto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_resto_categories" EntityType="Self.tb_resto_categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_resto_items" EntityType="Self.tb_resto_items" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tb_resto___categ__40F9A68C" Association="Self.FK__tb_resto___categ__40F9A68C">
+      <End Role="tb_resto_categories" EntitySet="tb_resto_categories" />
+      <End Role="tb_resto_items" EntitySet="tb_resto_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tb_resto___resto__40058253" Association="Self.FK__tb_resto___resto__40058253">
+      <End Role="tb_resto" EntitySet="tb_resto" />
+      <End Role="tb_resto_items" EntitySet="tb_resto_items" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

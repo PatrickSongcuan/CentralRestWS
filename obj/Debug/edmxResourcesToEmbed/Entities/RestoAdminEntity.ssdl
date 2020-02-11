@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestoAdmin.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_ra_roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleValue" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_ra_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="roleID" Type="int" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="middleName" Type="nvarchar" MaxLength="200" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__tb_ra_use__roleI__65370702">
+    <End Role="tb_ra_roles" Type="Self.tb_ra_roles" Multiplicity="0..1" />
+    <End Role="tb_ra_users" Type="Self.tb_ra_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ra_roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_ra_users">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_ra_getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ra_registerUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="roleId" Type="int" Mode="In" />
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="middleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="createdBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="RestoAdminStoreContainer">
+    <EntitySet Name="tb_ra_roles" EntityType="Self.tb_ra_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ra_users" EntityType="Self.tb_ra_users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tb_ra_use__roleI__65370702" Association="Self.FK__tb_ra_use__roleI__65370702">
+      <End Role="tb_ra_roles" EntitySet="tb_ra_roles" />
+      <End Role="tb_ra_users" EntitySet="tb_ra_users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RestoAdmin.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_ra_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleValue" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_ra_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="roleID" Type="int" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="middleName" Type="nvarchar" MaxLength="200" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__tb_ra_use__roleI__65370702">
+          <End Role="tb_ra_roles" Type="Self.tb_ra_roles" Multiplicity="0..1" />
+          <End Role="tb_ra_users" Type="Self.tb_ra_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ra_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_ra_users">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_ra_getRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ra_registerUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="roleId" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="middleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="createdBy" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RestoAdminStoreContainer">
+          <EntitySet Name="tb_ra_roles" EntityType="Self.tb_ra_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ra_users" EntityType="Self.tb_ra_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tb_ra_use__roleI__65370702" Association="Self.FK__tb_ra_use__roleI__65370702">
+            <End Role="tb_ra_roles" EntitySet="tb_ra_roles" />
+            <End Role="tb_ra_users" EntitySet="tb_ra_users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestoAdmin" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_ra_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleValue" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tb_ra_users" Relationship="Self.FK__tb_ra_use__roleI__51300E55" FromRole="tb_ra_roles" ToRole="tb_ra_users" />
+        </EntityType>
+        <EntityType Name="tb_ra_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleID" Type="Int32" />
+          <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tb_ra_roles" Relationship="Self.FK__tb_ra_use__roleI__51300E55" FromRole="tb_ra_users" ToRole="tb_ra_roles" />
+          <Property Name="createdBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__tb_ra_use__roleI__51300E55">
+          <End Role="tb_ra_roles" Type="Self.tb_ra_roles" Multiplicity="0..1" />
+          <End Role="tb_ra_users" Type="Self.tb_ra_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ra_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_ra_users">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestoAdminEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_ra_roles" EntityType="Self.tb_ra_roles" />
+          <EntitySet Name="tb_ra_users" EntityType="Self.tb_ra_users" />
+          <AssociationSet Name="FK__tb_ra_use__roleI__51300E55" Association="Self.FK__tb_ra_use__roleI__51300E55">
+            <End Role="tb_ra_roles" EntitySet="tb_ra_roles" />
+            <End Role="tb_ra_users" EntitySet="tb_ra_users" />
+          </AssociationSet>
+          <FunctionImport Name="sp_ra_getRoles" ReturnType="Collection(RestoAdmin.sp_ra_getRoles_Result)" />
+          <FunctionImport Name="sp_ra_registerUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="roleId" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="middleName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="createdBy" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_ra_getRoles_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="roleValue" Nullable="false" MaxLength="200" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestoAdminStoreContainer" CdmEntityContainer="RestoAdminEntity">
+          <EntitySetMapping Name="tb_ra_roles">
+            <EntityTypeMapping TypeName="RestoAdmin.tb_ra_roles">
+              <MappingFragment StoreEntitySet="tb_ra_roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleValue" ColumnName="roleValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ra_users">
+            <EntityTypeMapping TypeName="RestoAdmin.tb_ra_users">
+              <MappingFragment StoreEntitySet="tb_ra_users">
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ra_getRoles" FunctionName="RestoAdmin.Store.sp_ra_getRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RestoAdmin.sp_ra_getRoles_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleValue" ColumnName="roleValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ra_registerUser" FunctionName="RestoAdmin.Store.sp_ra_registerUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

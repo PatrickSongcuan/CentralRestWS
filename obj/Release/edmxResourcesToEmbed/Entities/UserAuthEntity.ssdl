@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A4338C_centralwsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BuzzLookup">
+    <Key>
+      <PropertyRef Name="buzzLookup_id" />
+    </Key>
+    <Property Name="buzzLookup_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buzzLookup_startDate" Type="datetime" Nullable="false" />
+    <Property Name="buzzLookup_endDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lookup">
+    <Key>
+      <PropertyRef Name="lookup_id" />
+    </Key>
+    <Property Name="lookup_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lookup_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lookuptimer">
+    <Key>
+      <PropertyRef Name="timer_id" />
+    </Key>
+    <Property Name="timer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="time" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_central_ws_ielts_user_details">
+    <Key>
+      <PropertyRef Name="ielts_user_detail_id" />
+    </Key>
+    <Property Name="ielts_user_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ielts_user_id" Type="int" />
+    <Property Name="ielts_first_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ielts_middle_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ielts_last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ielts_email_address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ielts_contact_number" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_central_ws_ielts_users">
+    <Key>
+      <PropertyRef Name="ielts_user_id" />
+    </Key>
+    <Property Name="ielts_user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ielts_username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ielts_password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="is_admin" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_central_ws_presmat_buzzer">
+    <Key>
+      <PropertyRef Name="presmat_buzz_id" />
+    </Key>
+    <Property Name="presmat_buzz_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="presmat_group_number" Type="int" Nullable="false" />
+    <Property Name="presmat_is_buzzed" Type="int" Nullable="false" />
+    <Property Name="presmat_date_updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_central_ws_presmat_group_scores">
+    <Key>
+      <PropertyRef Name="presmat_group_score_id" />
+    </Key>
+    <Property Name="presmat_group_score_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="presmat_group_number" Type="int" Nullable="false" />
+    <Property Name="presmat_group_score" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_central_ws_presmat_v2_groups">
+    <Key>
+      <PropertyRef Name="presmat_v2_group_id" />
+    </Key>
+    <Property Name="presmat_v2_group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="presmat_v2_group_no" Type="int" Nullable="false" />
+    <Property Name="presmat_v2_group_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="guid" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_roles">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A4338C_centralws.dbo.tbl_VCMS_userDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_VCMS_userDetails">
+    <Key>
+      <PropertyRef Name="user_detail_id" />
+      <PropertyRef Name="first_name" />
+      <PropertyRef Name="last_name" />
+      <PropertyRef Name="email_address" />
+      <PropertyRef Name="contact_number" />
+    </Key>
+    <Property Name="user_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="role_id" Type="int" />
+    <Property Name="email_address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="contact_number" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="createdBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="is_active" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A4338C_centralws.dbo.test' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="test" />
+    </Key>
+    <Property Name="test" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tbl_centr__ielts__25869641">
+    <End Role="tbl_central_ws_ielts_users" Type="Self.tbl_central_ws_ielts_users" Multiplicity="0..1" />
+    <End Role="tbl_central_ws_ielts_user_details" Type="Self.tbl_central_ws_ielts_user_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_central_ws_ielts_users">
+        <PropertyRef Name="ielts_user_id" />
+      </Principal>
+      <Dependent Role="tbl_central_ws_ielts_user_details">
+        <PropertyRef Name="ielts_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___creat__7A672E12">
+    <End Role="tbl_VCMS_users" Type="Self.tbl_VCMS_users" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___role___787EE5A0">
+    <End Role="tbl_VCMS_roles" Type="Self.tbl_VCMS_roles" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___user___778AC167">
+    <End Role="tbl_VCMS_users" Type="Self.tbl_VCMS_users" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="button_toggle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="check_button_enable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ielts_get_all_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ielts_insert_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ielts_username" Type="nvarchar" Mode="In" />
+    <Parameter Name="ielts_password" Type="nvarchar" Mode="In" />
+    <Parameter Name="is_admin" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ielts_insert_user_details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+    <Parameter Name="ielts_first_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="ielts_middle_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="ielts_last_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="ielts_email_address" Type="nvarchar" Mode="In" />
+    <Parameter Name="ielts_contact_number" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="prc_VCMS_get_roles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_buzz" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="group_number" Type="int" Mode="In" />
+  </Function>
+  <Function Name="presmat_get_buzzed_group" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_new_round" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_get_current_time" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_get_group_numbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_get_groups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_getBuzzStartDate_EndDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_insert_new_time" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="time" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="presmat_v2_insert_time_to_lookup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="presmat_v2_logout_delete_group" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="group_no" Type="int" Mode="In" />
+    <Parameter Name="guid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="presmat_v2_register_group" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="group_no" Type="int" Mode="In" />
+    <Parameter Name="group_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="guid" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="presmat_v2_update_score" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="group_number" Type="int" Mode="In" />
+    <Parameter Name="score" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DB_A4338C_centralwsModelStoreContainer">
+    <EntitySet Name="BuzzLookup" EntityType="Self.BuzzLookup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lookup" EntityType="Self.Lookup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lookuptimer" EntityType="Self.Lookuptimer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_central_ws_ielts_user_details" EntityType="Self.tbl_central_ws_ielts_user_details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_central_ws_ielts_users" EntityType="Self.tbl_central_ws_ielts_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_central_ws_presmat_buzzer" EntityType="Self.tbl_central_ws_presmat_buzzer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_central_ws_presmat_group_scores" EntityType="Self.tbl_central_ws_presmat_group_scores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_central_ws_presmat_v2_groups" EntityType="Self.tbl_central_ws_presmat_v2_groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_roles" EntityType="Self.tbl_VCMS_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_users" EntityType="Self.tbl_VCMS_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VCMS_userDetails" EntityType="Self.tbl_VCMS_userDetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_VCMS_userDetails].[user_detail_id] AS [user_detail_id], 
+    [tbl_VCMS_userDetails].[user_id] AS [user_id], 
+    [tbl_VCMS_userDetails].[first_name] AS [first_name], 
+    [tbl_VCMS_userDetails].[last_name] AS [last_name], 
+    [tbl_VCMS_userDetails].[role_id] AS [role_id], 
+    [tbl_VCMS_userDetails].[email_address] AS [email_address], 
+    [tbl_VCMS_userDetails].[contact_number] AS [contact_number], 
+    [tbl_VCMS_userDetails].[dateCreated] AS [dateCreated], 
+    [tbl_VCMS_userDetails].[createdBy] AS [createdBy]
+    FROM [dbo].[tbl_VCMS_userDetails] AS [tbl_VCMS_userDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="test" EntityType="Self.test" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [test].[test] AS [test]
+    FROM [dbo].[test] AS [test]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tbl_centr__ielts__25869641" Association="Self.FK__tbl_centr__ielts__25869641">
+      <End Role="tbl_central_ws_ielts_users" EntitySet="tbl_central_ws_ielts_users" />
+      <End Role="tbl_central_ws_ielts_user_details" EntitySet="tbl_central_ws_ielts_user_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___creat__7A672E12" Association="Self.FK__tbl_VCMS___creat__7A672E12">
+      <End Role="tbl_VCMS_users" EntitySet="tbl_VCMS_users" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___role___787EE5A0" Association="Self.FK__tbl_VCMS___role___787EE5A0">
+      <End Role="tbl_VCMS_roles" EntitySet="tbl_VCMS_roles" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___user___778AC167" Association="Self.FK__tbl_VCMS___user___778AC167">
+      <End Role="tbl_VCMS_users" EntitySet="tbl_VCMS_users" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

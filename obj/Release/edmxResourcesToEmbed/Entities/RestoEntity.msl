@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Db_Resto_EntityStoreContainer" CdmEntityContainer="RestoEntity">
+    <EntitySetMapping Name="tb_resto">
+      <EntityTypeMapping TypeName="Db_Resto_Entity.tb_resto">
+        <MappingFragment StoreEntitySet="tb_resto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resto_name" ColumnName="resto_name" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_resto_categories">
+      <EntityTypeMapping TypeName="Db_Resto_Entity.tb_resto_categories">
+        <MappingFragment StoreEntitySet="tb_resto_categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_resto_items">
+      <EntityTypeMapping TypeName="Db_Resto_Entity.tb_resto_items">
+        <MappingFragment StoreEntitySet="tb_resto_items">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resto_id" ColumnName="resto_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+          <ScalarProperty Name="item_image" ColumnName="item_image" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="is_available" ColumnName="is_available" />
+          <ScalarProperty Name="is_new" ColumnName="is_new" />
+          <ScalarProperty Name="is_special" ColumnName="is_special" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_resto_get_specials" FunctionName="Db_Resto_Entity.Store.sp_resto_get_specials">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Db_Resto_Entity.sp_resto_get_specials_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resto_id" ColumnName="resto_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+          <ScalarProperty Name="item_image" ColumnName="item_image" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="is_available" ColumnName="is_available" />
+          <ScalarProperty Name="is_new" ColumnName="is_new" />
+          <ScalarProperty Name="is_special" ColumnName="is_special" />
+          <ScalarProperty Name="date_created" ColumnName="date_created" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+          <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

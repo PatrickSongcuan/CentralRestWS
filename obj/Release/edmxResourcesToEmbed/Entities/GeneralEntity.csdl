@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A4338C_centralwsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_VCMS_roles">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_VCMS_userDetails" Relationship="Self.FK__tbl_VCMS___role___787EE5A0" FromRole="tbl_VCMS_roles" ToRole="tbl_VCMS_userDetails" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_userDetails">
+    <Key>
+      <PropertyRef Name="user_detail_id" />
+    </Key>
+    <Property Name="user_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contact_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Precision="3" />
+    <Property Name="createdBy" Type="Int32" />
+    <NavigationProperty Name="tbl_VCMS_roles" Relationship="Self.FK__tbl_VCMS___role___787EE5A0" FromRole="tbl_VCMS_userDetails" ToRole="tbl_VCMS_roles" />
+    <NavigationProperty Name="tbl_VCMS_users" Relationship="Self.FK__tbl_VCMS___user___778AC167" FromRole="tbl_VCMS_userDetails" ToRole="tbl_VCMS_users" />
+    <Property Name="dateModified" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_VCMS_userDetails" Relationship="Self.FK__tbl_VCMS___user___778AC167" FromRole="tbl_VCMS_users" ToRole="tbl_VCMS_userDetails" />
+  </EntityType>
+  <Association Name="FK__tbl_VCMS___role___787EE5A0">
+    <End Role="tbl_VCMS_roles" Type="Self.tbl_VCMS_roles" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_roles">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___user___778AC167">
+    <End Role="tbl_VCMS_users" Type="Self.tbl_VCMS_users" Multiplicity="0..1" />
+    <End Role="tbl_VCMS_userDetails" Type="Self.tbl_VCMS_userDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_userDetails">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GeneralEntity2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_VCMS_roles" EntityType="Self.tbl_VCMS_roles" />
+    <EntitySet Name="tbl_VCMS_userDetails" EntityType="Self.tbl_VCMS_userDetails" />
+    <EntitySet Name="tbl_VCMS_users" EntityType="Self.tbl_VCMS_users" />
+    <AssociationSet Name="FK__tbl_VCMS___role___787EE5A0" Association="Self.FK__tbl_VCMS___role___787EE5A0">
+      <End Role="tbl_VCMS_roles" EntitySet="tbl_VCMS_roles" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___user___778AC167" Association="Self.FK__tbl_VCMS___user___778AC167">
+      <End Role="tbl_VCMS_users" EntitySet="tbl_VCMS_users" />
+      <End Role="tbl_VCMS_userDetails" EntitySet="tbl_VCMS_userDetails" />
+    </AssociationSet>
+    <FunctionImport Name="prc_VCMS_check_username" ReturnType="Collection(Int32)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_roles" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_roles_Result)" />
+    <FunctionImport Name="prc_VCMS_register_user">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="first_name" Mode="In" Type="String" />
+      <Parameter Name="last_name" Mode="In" Type="String" />
+      <Parameter Name="role_id" Mode="In" Type="Int32" />
+      <Parameter Name="email_address" Mode="In" Type="String" />
+      <Parameter Name="contact_number" Mode="In" Type="String" />
+      <Parameter Name="user_id_creator" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_password_hash" ReturnType="Collection(String)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_user_roles_and_details" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_user_roles_and_details_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_all_users" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_all_users_Result)">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_user_by_id" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_user_by_id_Result)">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_all_users_search" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_all_users_search_Result)">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="search_input" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_update_user">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="first_name" Mode="In" Type="String" />
+      <Parameter Name="last_name" Mode="In" Type="String" />
+      <Parameter Name="email_address" Mode="In" Type="String" />
+      <Parameter Name="contact_number" Mode="In" Type="String" />
+      <Parameter Name="user_id_creator" Mode="In" Type="Int32" />
+      <Parameter Name="is_active" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_get_user_by_status" ReturnType="Collection(DB_A4338C_centralwsModel.prc_VCMS_get_user_by_status_Result)">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="status_flag" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tbl_VCMS_residentBalance" EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residentBalance" />
+    <EntitySet Name="tbl_VCMS_residentCollection" EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residentCollection" />
+    <EntitySet Name="tbl_VCMS_residents" EntityType="DB_A4338C_centralwsModel.tbl_VCMS_residents" />
+    <AssociationSet Name="FK__tbl_VCMS___resid__236943A5" Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__236943A5">
+      <End Role="tbl_VCMS_residents" EntitySet="tbl_VCMS_residents" />
+      <End Role="tbl_VCMS_residentBalance" EntitySet="tbl_VCMS_residentBalance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_VCMS___resid__18EBB532" Association="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__18EBB532">
+      <End Role="tbl_VCMS_residents" EntitySet="tbl_VCMS_residents" />
+      <End Role="tbl_VCMS_residentCollection" EntitySet="tbl_VCMS_residentCollection" />
+    </AssociationSet>
+    <FunctionImport Name="prc_VCMS_create_resident">
+      <Parameter Name="first_name" Mode="In" Type="String" />
+      <Parameter Name="middle_name" Mode="In" Type="String" />
+      <Parameter Name="last_name" Mode="In" Type="String" />
+      <Parameter Name="email_address" Mode="In" Type="String" />
+      <Parameter Name="contact_number" Mode="In" Type="String" />
+      <Parameter Name="total_monthly_collection" Mode="In" Type="String" />
+      <Parameter Name="start_of_collection" Mode="In" Type="DateTime" />
+      <Parameter Name="has_payment" Mode="In" Type="Int32" />
+      <Parameter Name="user_id_creator" Mode="In" Type="Int32" />
+      <Parameter Name="payment_amount" Mode="In" Type="String" />
+      <Parameter Name="balance" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="prc_VCMS_check_resident" ReturnType="Collection(Int32)">
+      <Parameter Name="first_name" Mode="In" Type="String" />
+      <Parameter Name="last_name" Mode="In" Type="String" />
+      <Parameter Name="email_address" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="prc_VCMS_get_roles_Result">
+    <Property Type="Int32" Name="role_id" Nullable="false" />
+    <Property Type="String" Name="role_name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="prc_VCMS_get_user_roles_and_details_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="role_id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="prc_VCMS_get_all_users_Result">
+    <Property Type="Int32" Name="user_id" Nullable="true" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="email_address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="contact_number" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="role_name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="prc_VCMS_get_user_by_id_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="email_address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="contact_number" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="role_name" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="is_active" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="prc_VCMS_get_all_users_search_Result">
+    <Property Type="Int32" Name="user_id" Nullable="true" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="email_address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="contact_number" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="role_name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="prc_VCMS_get_user_by_status_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="email_address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="contact_number" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="role_name" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="is_active" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="tbl_VCMS_residentBalance">
+    <Key>
+      <PropertyRef Name="balance_id" />
+    </Key>
+    <Property Name="balance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="resident_id" Type="Int32" Nullable="false" />
+    <Property Name="balance_amount" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="last_payment_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_VCMS_residents" Relationship="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__236943A5" FromRole="tbl_VCMS_residentBalance" ToRole="tbl_VCMS_residents" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_residentCollection">
+    <Key>
+      <PropertyRef Name="collection_id" />
+    </Key>
+    <Property Name="collection_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="resident_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_amount" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="date_of_payment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="payment_month" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbl_VCMS_residents" Relationship="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__18EBB532" FromRole="tbl_VCMS_residentCollection" ToRole="tbl_VCMS_residents" />
+  </EntityType>
+  <EntityType Name="tbl_VCMS_residents">
+    <Key>
+      <PropertyRef Name="resident_id" />
+    </Key>
+    <Property Name="resident_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="middle_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="contact_number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email_address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="total_monthly_collection" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="start_of_collection" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_by" Type="Int32" Nullable="false" />
+    <Property Name="date_modified" Type="DateTime" Precision="3" />
+    <Property Name="modified_by" Type="Int32" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_VCMS_residentBalance" Relationship="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__236943A5" FromRole="tbl_VCMS_residents" ToRole="tbl_VCMS_residentBalance" />
+    <NavigationProperty Name="tbl_VCMS_residentCollection" Relationship="DB_A4338C_centralwsModel.FK__tbl_VCMS___resid__18EBB532" FromRole="tbl_VCMS_residents" ToRole="tbl_VCMS_residentCollection" />
+  </EntityType>
+  <Association Name="FK__tbl_VCMS___resid__236943A5">
+    <End Type="DB_A4338C_centralwsModel.tbl_VCMS_residents" Role="tbl_VCMS_residents" Multiplicity="1" />
+    <End Type="DB_A4338C_centralwsModel.tbl_VCMS_residentBalance" Role="tbl_VCMS_residentBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_residents">
+        <PropertyRef Name="resident_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_residentBalance">
+        <PropertyRef Name="resident_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_VCMS___resid__18EBB532">
+    <End Type="DB_A4338C_centralwsModel.tbl_VCMS_residents" Role="tbl_VCMS_residents" Multiplicity="1" />
+    <End Type="DB_A4338C_centralwsModel.tbl_VCMS_residentCollection" Role="tbl_VCMS_residentCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VCMS_residents">
+        <PropertyRef Name="resident_id" />
+      </Principal>
+      <Dependent Role="tbl_VCMS_residentCollection">
+        <PropertyRef Name="resident_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
